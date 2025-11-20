@@ -1,7 +1,7 @@
 
 type Value= string | number | boolean;
 
-const formatValue=(value:Value)=>{
+const formatValue=(value:Value):Value=>{
      if(typeof value==='string'){
         return value.toUpperCase()
      }else if(typeof value==='number'){
@@ -50,7 +50,7 @@ type TFilterByRating={
     rating:number;
 }
 
-const filterByRating=(value:TFilterByRating[])=>{
+const filterByRating=(value:TFilterByRating[]):TFilterByRating[]=>{
     return value.filter((item)=>{
         if(item.rating>=4){
             return item;
@@ -89,9 +89,9 @@ const printBookDetails=(book:Book)=>{
 
 type TUniqueValueArray<T>=T[]
 
-const getUniqueValues=<X,Y>(array1:TUniqueValueArray<X>,array2:TUniqueValueArray<Y>)=>{
+const getUniqueValues=<X,Y>(array1:TUniqueValueArray<X>,array2:TUniqueValueArray<Y>):TUniqueValueArray<X|Y>=>{
 
-    const fullArray=[...array1,...array2];
+    const fullArray:TUniqueValueArray<X|Y>=[...array1,...array2];
     const newArray:TUniqueValueArray<X | Y>=[]
 
     for(let i=0;i<fullArray.length;i++){
@@ -105,9 +105,26 @@ const getUniqueValues=<X,Y>(array1:TUniqueValueArray<X>,array2:TUniqueValueArray
 
 
 
-const array1 = [1, 2, 3, 4, 5];
-// const array2 = [3, 4, 5, 6, 7];
+type Product={
+    name:string;
+    price:number;
+    quantity:number;
+    discount?:number;
+}
 
-// const array1 = ['a','b','c','d'];
-const array2 = [true,false,true,true,false]
-console.log(getUniqueValues(array1, array2));
+const calculateTotalPrice=(product:Product[]):number=>{
+    
+   return product.reduce((total:number,item:Product)=>{
+        if(item?.discount){
+            total=total+item.price*item.quantity-(item.price*item.quantity)*(item?.discount/100);
+        }else{
+            total=total+item.price*item.quantity;
+        }
+        return total;
+    },0)
+}
+
+
+
+
+
