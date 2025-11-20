@@ -15,7 +15,7 @@ const formatValue=(value:Value)=>{
 
 type GetLength<T> =string | T[] 
 
-const getLength=<T>(value:GetLength<T>)=>{
+const getLength=<T>(value:GetLength<T>):number | undefined=>{
     if(typeof value==='string'){
         return value.length;
     }
@@ -25,8 +25,27 @@ const getLength=<T>(value:GetLength<T>)=>{
     }
 }
 
-console.log(getLength('typescript'));
-console.log(getLength([10, 20, 30, 40]));
-console.log(getLength(["a","b","c"]));
 
+
+class Person{
+    name:string;
+    age:number;
+
+    constructor(name:string,age:number){
+        this.name=name;
+        this.age=age;
+    }
+
+    getDetails(){
+        return `'Name: ${this.name}, Age: ${this.age}';`
+    }
+
+}
+
+
+const person1 = new Person('John Doe', 30);
+console.log(person1.getDetails());
+
+const person2 = new Person('Alice', 25);
+console.log(person2.getDetails());
 
