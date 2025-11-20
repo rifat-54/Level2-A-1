@@ -82,10 +82,32 @@ interface Book{
 
 const printBookDetails=(book:Book)=>{
     const viewDetails= `Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${book.isAvailable?"Yes":"No"}`
-
     console.log(viewDetails);
-   
 }
 
 
 
+type TUniqueValueArray<T>=T[]
+
+const getUniqueValues=<X,Y>(array1:TUniqueValueArray<X>,array2:TUniqueValueArray<Y>)=>{
+
+    const fullArray=[...array1,...array2];
+    const newArray:TUniqueValueArray<X | Y>=[]
+
+    for(let i=0;i<fullArray.length;i++){
+        if(!newArray.includes(fullArray[i])){
+            newArray.push(fullArray[i])
+        }
+    }
+
+    return newArray;
+}
+
+
+
+const array1 = [1, 2, 3, 4, 5];
+// const array2 = [3, 4, 5, 6, 7];
+
+// const array1 = ['a','b','c','d'];
+const array2 = [true,false,true,true,false]
+console.log(getUniqueValues(array1, array2));
