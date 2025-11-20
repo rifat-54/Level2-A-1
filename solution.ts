@@ -59,6 +59,7 @@ const filterByRating=(value:TFilterByRating[])=>{
 }
 
 
+
 type TFilterActiveUsers={
     id:number;
     name:string;
@@ -71,10 +72,20 @@ const filterActiveUsers=(value:TFilterActiveUsers[]):TFilterActiveUsers[]=>{
 }
 
 
-const users = [
-  { id: 1, name: 'Rakib', email: 'rakib@example.com', isActive: true },
-  { id: 2, name: 'Asha', email: 'asha@example.com', isActive: false },
-  { id: 3, name: 'Rumi', email: 'rumi@example.com', isActive:true },
-];
 
-console.log(filterActiveUsers(users));
+interface Book{
+    title:string;
+    author:string;
+    publishedYear:number;
+    isAvailable:boolean;
+}
+
+const printBookDetails=(book:Book)=>{
+    const viewDetails= `Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${book.isAvailable?"Yes":"No"}`
+
+    console.log(viewDetails);
+   
+}
+
+
+
